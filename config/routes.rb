@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'name/index'
-
-  get 'name/search'
+  get 'search/search'
 
   get 'website/index'
 
