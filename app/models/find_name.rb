@@ -1,5 +1,10 @@
 class FindName < ApplicationRecord
 
+  scope :name_type_filter, ->(type) { where('name_type = ?', type) }
+  scope :partialmatch_column, ->(column, e) {
+    where(sanitize_sql_array(["`#{column}` like ? escape '!'", "%#{e.gsub(/[!%_]/) { |x| '!' + x }}%"]))
+  }
+
   # Name types
   module Type
     FIRST_NAME  = 1

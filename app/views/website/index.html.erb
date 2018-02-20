@@ -11,14 +11,22 @@
       html, body {
         background-color: lightblue;
         height: 100%;
+        overflow: hidden;
       }
       .container {
         background-color: white;
         width: 80%;
         height: 90%;
       }
-      .search-form {
+      #search-form {
         //background-color: red;
+      }
+      .results {
+        margin-top: 80px;
+        border-top: 1px solid;
+      }
+      .results-list {
+        overflow: scroll;
       }
       .footer {
         height: 10%;
@@ -37,6 +45,23 @@
           <%= select_tag(:name_type, options_for_select({"First name": 1, "Middle name": 2, "Last Name": 3}, "1")) %>
           <%= text_field_tag(:q) %>
           <%= submit_tag("Search") %>
+        <% end %>
+      </div>
+
+      <div class="results">
+        <% if @results[:search_key].present? %>
+          <h3>Results for: <%= @results[:search_key] %></h3>
+          <div class="result-list">
+            <% @results[:by_kanji].each do |result| %>
+              <p><%= result.by_kanji %></p>
+            <% end %>
+            <% @results[:by_romaji].each do |result| %>
+              <p><%= result.by_romaji %></p>
+            <% end %>
+            <% @results[:by_katakana].each do |result| %>
+              <p><%= result.by_katakana %></p>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
