@@ -11,19 +11,24 @@
       html, body {
         background-color: lightblue;
         height: 100%;
-        overflow: hidden;
       }
       .container {
         background-color: white;
-        width: 80%;
-        height: 90%;
+        min-height: 90%;
+        padding: 0;
+      }
+      .navbar a {
+        color: white;
+        font-size: 20px;
       }
       #search-form {
-        //background-color: red;
+        margin-top: 50px;
       }
       .results {
         margin-top: 80px;
+        padding: 10px;
         border-top: 1px solid;
+        //min-height: 370px;
       }
       .results-list {
         overflow: scroll;
@@ -32,13 +37,19 @@
         height: 10%;
         background-color: darkblue;
       }
+      .footer p {
+        color: white;
+      }
     </style>
 
     <title>Rails demo</title>
   </head>
   <body>
     <div class="container" style="">
-      <h2>Search vietamese name</h2>
+      <center><h2>Search vietamese name</h2></center>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <%= link_to "Home", controller: "website", action: "index" %>
+      </nav>
       <div id="search-form">
         <%= form_tag("/search/search", method: "get") do %>
           <%= label_tag(:q, "Search by:") %>
@@ -66,6 +77,12 @@
       </div>
     </div>
     <div class="footer">
+      <center>
+        <p>
+          "Page built for"
+          <a href="http://rubyonrails.org/">Ruby on Rails</a>
+        </p>
+      </center>
     </div>
 
     <!-- Optional JavaScript -->
