@@ -12,6 +12,8 @@ class SearchController < ApplicationController
       by_romaji: by_romaji_results,
       by_katakana: by_katakana_results
     }
-    render 'website/index'
+  end
+
+  def name_generate
   end
 end

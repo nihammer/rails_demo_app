@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'search/search'
 
+  get 'search/name_generate'
+
   get 'website/index'
 
   get 'website/show'
