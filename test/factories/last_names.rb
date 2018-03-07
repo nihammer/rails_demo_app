@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :find_name do
+  factory :last_name do
     
   end
 end

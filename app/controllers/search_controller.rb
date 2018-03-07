@@ -1,19 +1,42 @@
 class SearchController < ApplicationController
+
+  MAX_NUMBER_OF_NAME_GENERATE = 10
+
   def search
     search_key = params[:q]
-    name_type = params[:name_type]
-    find_name = FindName.name_type_filter(name_type)
-    by_kanji_results = find_name.partialmatch_column("by_kanji", search_key)
-    by_romaji_results = find_name.partialmatch_column("by_romaji", search_key)
-    by_katakana_results = find_name.partialmatch_column("by_katakana", search_key)
+    columns = ["by_kanji", "by_romaji", "by_hiragana", "by_katakana"]
+    results = []
+
+    # search for lastname
+    columns.each do |column|
+      results = LastName.partialmatch_column(column, search_key)
+      break if results.present?
+    end
+
+    # search for firstname if not found lastname
+    if results.empty?
+      columns.each do |column|
+        results = FirstName.partialmatch_column(column, search_key)
+        break if results.present?
+      end
+    end
+
     @results = {
       search_key: search_key,
-      by_kanji: by_kanji_results,
-      by_romaji: by_romaji_results,
-      by_katakana: by_katakana_results
+      results: results,
     }
   end
 
   def name_generate
+    gender = params[:gender]
+    @results = []
+    if gender
+      first_names = FirstName.gender(gender.to_i).order('RAND()').first(MAX_NUMBER_OF_NAME_GENERATE).map(&:by_kanji)
+      last_names  = LastName.order('RAND()').first(MAX_NUMBER_OF_NAME_GENERATE).map(&:by_kanji)
+      (0..MAX_NUMBER_OF_NAME_GENERATE-1).each do |index|
+        @results[index] = { first: first_names[index], last: last_names[index] }
+      end
+    end
+    @results
   end
 end

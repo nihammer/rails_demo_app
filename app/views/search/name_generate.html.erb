@@ -1,6 +1,21 @@
 <center><h2>Name Generate</h2></center>
-<div id="generate-form">
+<div id="generate-form" align="center">
   <%= form_tag("/search/name_generate", method: "get") do %>
+    <%= label(:generate, "Randomly generated 10 Japanese names for gender:") %>
+    <%= select_tag(:gender, options_for_select({"Male": 1, "Female": 2}, "1")) %>
+    <br>
     <%= submit_tag("Generate") %>
+  <% end %>
+</div>
+
+<div class="results">
+  <% if @results && @results.present? %>
+    <h3>Results</h3>
+    <div class="result-list">
+      <% @results.each do |result| %>
+        <p><%= result[:last] %> <%= result[:first] %></p>
+        <br>
+      <% end %>
+    </div>
   <% end %>
 </div>

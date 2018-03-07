@@ -10,20 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219175513) do
+ActiveRecord::Schema.define(version: 20180306115537) do
 
-  create_table "find_names", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "name_type"
+  create_table "first_names", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "gender"
     t.string "by_kanji"
     t.string "by_romaji"
+    t.string "by_hiragana"
     t.string "by_katakana"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "title"
-    t.text "content"
+  create_table "last_names", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "by_kanji"
+    t.string "by_romaji"
+    t.string "by_hiragana"
+    t.string "by_katakana"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

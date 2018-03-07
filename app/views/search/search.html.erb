@@ -1,26 +1,33 @@
-<center><h2>Search vietnamese name</h2></center>
-<div id="search-form">
+<center><h2>Search Japanese name</h2></center>
+<div id="search-form" align="center">
   <%= form_tag("/search/search", method: "get") do %>
-    <%= label_tag(:q, "Search by:") %>
-    <%= select_tag(:name_type, options_for_select({"First name": 1, "Middle name": 2, "Last Name": 3}, "1")) %>
-    <%= text_field_tag(:q, nil, placeholder: 'nham, ニャム', size: 50) %>
+    <%= text_field_tag(:q, nil, placeholder: 'ここに入力したください！', size: 50) %>
     <%= submit_tag("Search") %>
   <% end %>
 </div>
 
 <div class="results">
   <% if @results && @results[:search_key].present? %>
-    <h3>Results for: <%= @results[:search_key] %></h3>
-    <div class="result-list">
-      <% @results[:by_kanji].each do |result| %>
-        <p><%= result.by_kanji %></p>
-      <% end %>
-      <% @results[:by_romaji].each do |result| %>
-        <p><%= result.by_romaji %></p>
-      <% end %>
-      <% @results[:by_katakana].each do |result| %>
-        <p><%= result.by_katakana %></p>
-      <% end %>
-    </div>
+    <% if @results[:results].present? %>
+      <h3>Found <%= @results[:results].size %> results for: <%= @results[:search_key] %></h3>
+      <table class="result-list">
+        <tr>
+          <th>Kanji</th>
+          <th>Romaji</th>
+          <th>Hiragana</th>
+          <th>Katakana</th>
+        </tr>
+        <% @results[:results].each do |result| %>
+        <tr>
+          <th><%= result.by_kanji %></th>
+          <th><%= result.by_romaji %></th>
+          <th><%= result.by_hiragana %></th>
+          <th><%= result.by_katakana %></th>
+        </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <h3>Not found any results for: <%= @results[:search_key] %></h3>
+    <% end %>
   <% end %>
 </div>
