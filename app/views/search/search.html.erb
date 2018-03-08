@@ -1,7 +1,7 @@
 <center><h2>Search Japanese name</h2></center>
 <div id="search-form" align="center">
   <%= form_tag("/search/search", method: "get") do %>
-    <%= text_field_tag(:q, nil, placeholder: 'ここに入力したください！', size: 50) %>
+    <%= text_field_tag(:q, nil, placeholder: 'Please input firstname or lastname here!', size: 50) %>
     <%= submit_tag("Search") %>
   <% end %>
 </div>

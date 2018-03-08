@@ -28,10 +28,10 @@ development:
 #  database: ENV['database']
 #  encoding: utf8
 #
-#production:
-#  adapter: mysql2
-#  host: ENV['host']
-#  username: ENV['username']
-#  password: ENV['password']
-#  database: ENV['database']
-#  encoding: utf8
+production:
+  adapter: mysql2
+  host: <%= ENV['production_host'] %>
+  username: <%= ENV['production_username'] %>
+  password: <%= ENV['production_password'] %>
+  database: <%= ENV['production_database'] %>
+  encoding: utf8
