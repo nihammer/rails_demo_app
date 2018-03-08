@@ -30,8 +30,6 @@ development:
 #
 production:
   adapter: mysql2
-  host: <%= ENV['production_host'] %>
-  username: <%= ENV['production_username'] %>
-  password: <%= ENV['production_password'] %>
-  database: <%= ENV['production_database'] %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
+  socket: /var/run/mysqld/mysqld.sock
   encoding: utf8
