@@ -1,14 +1,4 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
-#default: &default
-#  adapter: sqlite3
-#  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-#  timeout: 5000
-
+# Please rename file config/local_env.yml.sample to config/local_env.yml
 development:
   adapter: mysql2
   host: <%= ENV['host'] %>

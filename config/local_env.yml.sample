@@ -1,0 +1,6 @@
+#Environments file
+
+host: localhost
+username: root
+password: ''
+database: nhamnd_railsdemoapp
